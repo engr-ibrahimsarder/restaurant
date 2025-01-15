@@ -1,15 +1,24 @@
 import { useState } from "react";
+import MenuItem from "../shared/MenuItem";
 
 const Menu = () => {
-    const [Menus, setMenus] = useState()
-    fetch("menu.json")
-    .then(res=> res.json())
-    .then(data=> {
-        setMenus(data)
-        console.log(data)})
+  const [menu, setMenu] = useState([])
+  
+  fetch("menu.json")
+  .then(res=>res.json())
+  .then(data=>{
+    const dessert = data.filter(food=> food.category === "dessert")
+    setMenu(dessert)
+  })
   return (
-    <div>
-      get started with coding! 🤗
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+      {
+      menu.map(item=>    
+        <MenuItem  
+        key={item._id}
+        item={item}
+        ></MenuItem>
+      )}
     </div>
   );
 };
