@@ -17,7 +17,7 @@ const Reviews = () => {
     },[]); 
   return (
     <div>
-        <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
+        <Swiper navigation={true} modules={[Navigation]} className="mySwiper max-w-7xl mx-auto">
             {
                 reviews.map(review=>
                     <SwiperSlide key={review._id}>

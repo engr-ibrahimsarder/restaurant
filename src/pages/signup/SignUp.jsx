@@ -4,8 +4,8 @@ import { useForm } from "react-hook-form"
 import { CiFacebook } from "react-icons/ci";
 import { FaGoogle } from "react-icons/fa";
 import { VscGithub } from "react-icons/vsc";
-import "./Login.css"
-const Login = () => {
+import "../login/Login"
+const SignUP = () => {
   const {
     register,
     handleSubmit,
@@ -15,14 +15,22 @@ const Login = () => {
 
   const onSubmit = (data) => console.log(data)
   return (
-    <div className="flex bg-img h-screen justify-center gap-40 py-5">
+    <div className="flex flex-row-reverse bg-img h-screen justify-center gap-40 py-5">
  <div>
  <img src={login} alt="" />
  </div>
    <div>
-    <h1 className="text-center text-xl mt-10 font-bold">Login</h1>
+    <h1 className="text-center text-xl mt-10 font-bold">SignUp</h1>
    <form onSubmit={handleSubmit(onSubmit)}>
       {/* register your input into the hook by invoking the "register" function */}
+      <div>
+        <label htmlFor="" className="text-xl">Name</label>
+        <br />
+        <input className="mb-5 focus:outline-none px-2 py-2 w-96" placeholder="Name" {...register("name",  { required: true, minLength: 1,  maxLength: 20 })} />
+    {
+        errors.name && <p className="text-rose-400">Name min length 1 character and Name max length 20 character</p>
+    }
+      </div>
       <div>
         <label htmlFor="" className="text-xl">Email</label>
         <br />
@@ -31,12 +39,16 @@ const Login = () => {
       <div>
         <label htmlFor="" className="text-xl">Password</label>
         <br />
-        <input className="focus:outline-none px-2 py-2 w-96" placeholder="password" {...register("pasword")} />
+        <input className="focus:outline-none px-2 py-2 w-96" placeholder="password" {...register("password", { required: true, minLength: 6,  maxLength: 20 })} />
+        {
+            errors.password && <p className="text-rose-400">Password must 6 character long and maximum length 20 character.</p>
+        }
       </div>
 
-      <input className="btn mt-5 bg-orange-400 hover:bg-orange-400 text-white w-96" type="submit" value="SignIn" />
+      <input className="btn mt-5 bg-orange-400 hover:bg-orange-400 text-white w-96" type="submit" value="SignUp" /> 
     </form>
-    <p className="mt-5">New Here? <Link className="text-orange-400" to="/signup">Create a New Account</Link></p>
+    <p className="mt-5">Already Registerd <Link className="text-orange-400" to="/login">
+    Go to in Login</Link></p>
     <p className="text-center mt-5 text-xl">or signin with</p>
     <div className="flex gap-5 mt-5 justify-center">
       <button>
@@ -54,4 +66,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUP;

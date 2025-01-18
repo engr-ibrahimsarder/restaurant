@@ -11,7 +11,7 @@ const Menu = () => {
     setMenu(dessert)
   })
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+    <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-5">
       {
       menu.map(item=>    
         <MenuItem  
