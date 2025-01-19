@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form"
 import { CiFacebook } from "react-icons/ci";
 import { FaGoogle } from "react-icons/fa";
 import { VscGithub } from "react-icons/vsc";
+import logo from "../../assets/logo.png";
 import "./Login.css"
 const Login = () => {
   const {
@@ -15,7 +16,11 @@ const Login = () => {
 
   const onSubmit = (data) => console.log(data)
   return (
-    <div className="flex bg-img h-screen justify-center gap-40 py-5">
+  <div className="bg-img">
+    <Link to="/">
+    <img className="w-16 ml-24" src={logo} alt="navlogo" />
+    </Link>
+    <div className="flex  h-screen justify-center gap-40 py-5">
  <div>
  <img src={login} alt="" />
  </div>
@@ -51,6 +56,7 @@ const Login = () => {
     </div>
    </div>
     </div>
+  </div>
   );
 };
 
