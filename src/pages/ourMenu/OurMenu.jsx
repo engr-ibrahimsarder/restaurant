@@ -4,7 +4,7 @@ import useMenu from "../../hooks/useMenu";
 import MenuCategory from "./MenuCategory";
 import bannerImg from "../../assets/home/chef-service.jpg"
 import coverImg from "../../assets/menu/banner3.jpg"
- 
+
 const OurMenu = () => {
   const [menu] = useMenu()
   const popular  = menu.filter(food => food.category === "popular")
