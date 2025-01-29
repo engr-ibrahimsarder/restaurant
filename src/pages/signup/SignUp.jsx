@@ -15,7 +15,15 @@ const SignUP = () => {
   } = useForm()
 
   console.log(errors)
-  const onSubmit = (data) => console.log(data)
+  const onSubmit = (data) =>{
+    console.log(data.name, data.email)
+    const user = {  
+      name: data.name,
+      email: data.email
+    }
+    const storage = localStorage.setItem("user", JSON.stringify(user))
+    console.log(storage)
+  } 
   return (
     <div className="bg-img">
        <Link to="/">
