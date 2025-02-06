@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import login from "../../assets/others/authentication2.png"
 import { useForm } from "react-hook-form"
@@ -8,8 +8,12 @@ import { VscGithub } from "react-icons/vsc";
 import logo from "../../assets/logo.png";
 import toast, { Toaster } from 'react-hot-toast';
 import "./Login.css"
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
+import Swal from "sweetalert2";
 const Login = () => {
+  const navigate = useNavigate()
+  const {signIn} = useContext(AuthContext)
   const [disabled,setDisabled] =useState(true)
   useEffect(()=>{
       loadCaptchaEnginge(6); 
@@ -34,7 +38,22 @@ else {
     formState: { errors },
   } = useForm()
 
-  const onSubmit = (data) => console.log(data)
+  const onSubmit = (data) => {
+    signIn(data.email, data.password)
+    .then(res=>{
+      const user = res.user;
+      if(user){
+        Swal.fire({
+                  position: "top-center",
+                  icon: "success",
+                  title: "User Loging Successfully!",
+                  showConfirmButton: false,
+                  timer: 1500
+                });
+                navigate('/')
+      }
+    })
+  }
  
   return (
     <div className="bg-img">
@@ -58,7 +77,7 @@ else {
             <div>
               <label htmlFor="" className="text-xl">Password</label>
               <br />
-              <input name="name" className="focus:outline-none px-2 py-2 w-96" placeholder="password" {...register("pasword")} />
+              <input className="focus:outline-none px-2 py-2 w-96" placeholder="password" {...register("password")} />
             </div>
             <div className="mt-10">
               <label ><LoadCanvasTemplate /></label>
