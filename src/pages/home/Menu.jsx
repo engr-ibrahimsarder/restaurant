@@ -3,7 +3,7 @@ import MenuItem from "../shared/MenuItem";
 
 const Menu = () => {
   const [menu] = useMenu();
-  console.log(menu)
+  
   const dessert = menu.filter(food => food.category === "dessert")
   return (
     <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-5">

@@ -11,8 +11,8 @@ const Category = () => {
     className="max-w-7xl mx-auto"
     spaceBetween={50}
     slidesPerView={4}
-    onSlideChange={() => console.log('slide change')}
-    onSwiper={(swiper) => console.log(swiper)}
+    onSlideChange={() => 'ok'}
+    onSwiper={(swiper)=>swiper}
   >
     <SwiperSlide>
         <img src={slide1} alt="" />

@@ -17,6 +17,7 @@ const MenuCategory = ({item, title, bannerImg}) => {
         <div className="grid grid-cols-1 md:grid-cols-2 max-w-7xl mx-auto my-10">
           {
             item.map(food=><MenuItem
+            key={food._id}
             item={food} 
             ></MenuItem>)
           }

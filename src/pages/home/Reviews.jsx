@@ -12,7 +12,6 @@ const Reviews = () => {
         .then(res=>res.json())    
         .then(data=> {
             setReviews(data)
-            console.log(data)
         })
     },[]); 
   return (

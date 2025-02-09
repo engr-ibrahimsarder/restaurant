@@ -5,6 +5,7 @@ const OurShopTab = ({foods}) => {
     <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
        {
             foods.map((food)=><OurShopCard
+            key={food._id}
             food={food}
             ></OurShopCard>)
           }

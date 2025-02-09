@@ -16,6 +16,7 @@ const OurShopCard = ({food}) => {
       email: user?.email,
       foodId: _id,
       name,
+      recipe,
       image, 
       price
     }
