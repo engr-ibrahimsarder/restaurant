@@ -3,42 +3,61 @@ import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import useCart from "../../hooks/useCart";
-
+import CustomLink from "../../CustomLink/CustomLink";
 
 const Navbar = () => {
-  const [cart] = useCart()
-  
-  const {user, logOut} = useContext(AuthContext)
+  const [cart] = useCart();
 
-  const handleLogOut = () =>{
-    logOut()
-  }
-  const navLink =
-    <div className="flex md:flex-row flex-col gap-5 uppercase text-black md:text-white">
-      <Link to="/">Home</Link>
-      <Link to="/contact">Contact Us</Link>
-      <Link to="/ourMenu">Our Menu</Link>
-      <Link to="/ourShop">Our Shop</Link>
-      {
-        user? 
-        <Link to="/dashboard">Dashboard</Link>
-        :
-      <></>
-      }
-      
-      <Link to="/dashboard/cart">
-          <FaShoppingCart className="text-2xl"></FaShoppingCart>      
-          <div className="badge badge-secondary absolute top-0 mt-2 ml-3">+{cart.length}</div>
-      </Link>
-      {
-        user? 
-        <button onClick={handleLogOut} className="text-sm uppercase">LogOut</button>
-        :
-        <Link to="/login">Login</Link>
-      }
-     
+  const { user, logOut } = useContext(AuthContext);
 
-    </div>
+  const handleLogOut = () => {
+    logOut();
+  };
+  const navLink = (
+    <ul className="flex md:flex-row flex-col  uppercase text-black md:text-white">
+      <li>
+        <CustomLink to="/">Home</CustomLink>
+      </li>
+      <li>
+        <CustomLink to="/contact">Contact Us</CustomLink>
+      </li>
+      <li>
+        <CustomLink to="/ourMenu">Our Menu</CustomLink>
+      </li>
+      <li>
+        <CustomLink to="/ourShop">Our Shop</CustomLink>
+      </li>
+      {user ? (
+        <li>
+          <CustomLink to="/dashboard">Dashboard</CustomLink>
+        </li>
+      ) : (
+        <></>
+      )}
+
+      <li>
+        <CustomLink className="mr-4" to="/dashboard/cart">
+          <FaShoppingCart className="text-2xl"></FaShoppingCart>
+          <div className="badge badge-secondary absolute -top-2 mb-6 ml-3">
+            +{cart.length}
+          </div>
+        </CustomLink>
+      </li>
+      {user ? (
+        <button
+          onClick={handleLogOut}
+          style={{ color: "yellow" }}
+          className="text-sm uppercase"
+        >
+          LogOut
+        </button>
+      ) : (
+        <li>
+          <CustomLink to="/login">Login</CustomLink>
+        </li>
+      )}
+    </ul>
+  );
   return (
     <div className="bg-black bg-opacity-30 fixed z-10 w-full">
       <div className="navbar  text-white max-w-7xl mx-auto">
@@ -50,28 +69,31 @@ const Navbar = () => {
                 className="h-5 w-5"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke="currentColor">
+                stroke="currentColor"
+              >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16" />
+                  d="M4 6h16M4 12h8m-8 6h16"
+                />
               </svg>
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+              className="menu menu-sm dropdown-content bg-black rounded-box z-[1] mt-3 w-52 p-2 shadow"
+            >
               {navLink}
             </ul>
           </div>
           <Link to="" className="text-xl">
-            <h1 className="text-white">Seven Star <br /> <span className="text-xs">Restaurant</span></h1>
+            <h1 className="text-white uppercase">
+              chicken <br /> <span className="text-xs">Street</span>
+            </h1>
           </Link>
         </div>
         <div className="navbar-end hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
-            {navLink}
-          </ul>
+          <ul className="menu menu-horizontal px-1">{navLink}</ul>
         </div>
       </div>
     </div>
