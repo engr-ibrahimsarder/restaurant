@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosPublic = axios.create({
-  baseURL: "https://restaurant-server-navy.vercel.app",
+  baseURL: "http://localhost:5000",
 });
 const usePublic = () => {
   return axiosPublic;

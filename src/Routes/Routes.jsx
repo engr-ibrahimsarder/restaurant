@@ -9,54 +9,67 @@ import SignUP from "../pages/signup/SignUp";
 import Dashboard from "../Layout/Dashboard";
 import Cart from "../pages/dashboard/cart/Cart";
 import UserProfile from "../pages/dashboard/userProfile/UserProfile";
-    
-const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <Main></Main>,
-        children: [
-            {
-                path: "/",
-                element: <Home></Home>
-            },
-            {
-                path: "login",
-                element: <Login></Login>
-            },
-            {
-                path: "signup",
-                element: <SignUP></SignUP>
-            },
-            {
-                path: "contact",
-                element: <Contact></Contact>
-            },
-            {
-                path: "ourMenu",
-                element: <OurMenu></OurMenu>
-            },
-            {
-                path: "ourShop",
-                element: <OurShop></OurShop>
-            },
-          
-        ]   
-    },
-    {
-        path: "/dashboard",
-        element: <Dashboard></Dashboard>,
-        children: [
-            {
-                path: 'cart',
-                element: <Cart></Cart>
-            },
-            {
-                path: 'userProfile',
-                element: <UserProfile></UserProfile>
-            },
+import PrivateRoute from "./PrivateRoute";
+import AllUser from "../pages/dashboard/admin/AllUser/AllUser";
 
-        ]
-    }
-    
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Main></Main>,
+    children: [
+      {
+        path: "/",
+        element: <Home></Home>,
+      },
+      {
+        path: "login",
+        element: <Login></Login>,
+      },
+      {
+        path: "signup",
+        element: <SignUP></SignUP>,
+      },
+      {
+        path: "contact",
+        element: <Contact></Contact>,
+      },
+      {
+        path: "ourMenu",
+        element: <OurMenu></OurMenu>,
+      },
+      {
+        path: "ourShop",
+        element: <OurShop></OurShop>,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        {" "}
+        <Dashboard></Dashboard>
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        path: "cart",
+        element: <Cart></Cart>,
+      },
+      {
+        index: true,
+        element: <UserProfile></UserProfile>,
+      },
+      {
+        path: "userProfile",
+        element: <UserProfile></UserProfile>,
+      },
+      // admin route
+      {
+        path: "users",
+        element: <AllUser></AllUser>,
+      },
+    ],
+  },
 ]);
 export default router;
